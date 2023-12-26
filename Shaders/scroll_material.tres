@@ -1,0 +1,8 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://bt265aflo0dth"]
+
+[ext_resource type="Shader" path="res://Shaders/scroll.gdshader" id="1_1vf3l"]
+
+[resource]
+shader = ExtResource("1_1vf3l")
+shader_parameter/direction = Vector2(1, 1)
+shader_parameter/speed_scale = 0.5
