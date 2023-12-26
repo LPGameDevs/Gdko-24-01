@@ -87,7 +87,6 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Menu" parent="." instance=ExtResource("1_cmx5q")]
-visible = false
 
 [node name="Settings" parent="." instance=ExtResource("2_kanj3")]
 visible = false
