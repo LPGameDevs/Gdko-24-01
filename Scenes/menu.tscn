@@ -1,9 +1,117 @@
-[gd_scene format=3 uid="uid://i5qf35t5xuue"]
+[gd_scene load_steps=5 format=3 uid="uid://i5qf35t5xuue"]
 
-[node name="Menu" type="Control"]
-layout_mode = 3
+[ext_resource type="Texture2D" uid="uid://bv81p68fj6r04" path="res://Assets/UI/blue_button04.png" id="1_enm4n"]
+[ext_resource type="Script" path="res://Scripts/Scenes/menu.gd" id="1_kch26"]
+[ext_resource type="Texture2D" uid="uid://jc3pg4pbikyr" path="res://Assets/UI/grey_button04.png" id="2_o2c67"]
+[ext_resource type="Texture2D" uid="uid://doag8tkhrgyl" path="res://Assets/UI/green_button04.png" id="3_8sq3w"]
+
+[node name="Menu" type="CanvasLayer"]
+script = ExtResource("1_kch26")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 25
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="TopButtons" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="SettingsButton" type="TextureButton" parent="MarginContainer/VBoxContainer/TopButtons"]
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 0
+texture_normal = ExtResource("1_enm4n")
+texture_pressed = ExtResource("2_o2c67")
+texture_hover = ExtResource("3_8sq3w")
+texture_disabled = ExtResource("2_o2c67")
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/TopButtons/SettingsButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Settings"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ExitButton" type="TextureButton" parent="MarginContainer/VBoxContainer/TopButtons"]
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 0
+texture_normal = ExtResource("1_enm4n")
+texture_pressed = ExtResource("2_o2c67")
+texture_hover = ExtResource("3_8sq3w")
+texture_disabled = ExtResource("2_o2c67")
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/TopButtons/ExitButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Exit"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="_spacer" type="Control" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+
+[node name="Title" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "The Game"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Description" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+text = "You are playing the game!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BottomButtons" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+alignment = 1
+
+[node name="StartButton" type="TextureButton" parent="MarginContainer/VBoxContainer/BottomButtons"]
+layout_mode = 2
+texture_normal = ExtResource("1_enm4n")
+texture_pressed = ExtResource("2_o2c67")
+texture_hover = ExtResource("3_8sq3w")
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/BottomButtons/StartButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Start Game"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Version" type="Label" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+text = "0.0.0"
+vertical_alignment = 1
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/TopButtons/SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/TopButtons/ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/BottomButtons/StartButton" to="." method="_on_start_button_pressed"]

@@ -1,3 +1,63 @@
-[gd_scene format=3 uid="uid://ql7461nfguw8"]
+[gd_scene load_steps=5 format=3 uid="uid://ql7461nfguw8"]
 
-[node name="Game" type="Node"]
+[ext_resource type="Script" path="res://Scripts/Scenes/game.gd" id="1_3bnbm"]
+[ext_resource type="Texture2D" uid="uid://bv81p68fj6r04" path="res://Assets/UI/blue_button04.png" id="1_7ypvr"]
+[ext_resource type="Texture2D" uid="uid://jc3pg4pbikyr" path="res://Assets/UI/grey_button04.png" id="2_4yt4d"]
+[ext_resource type="Texture2D" uid="uid://doag8tkhrgyl" path="res://Assets/UI/green_button04.png" id="3_6j4hf"]
+
+[node name="Game" type="CanvasLayer"]
+script = ExtResource("1_3bnbm")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 25
+
+[node name="QuitButton" type="TextureButton" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+texture_normal = ExtResource("1_7ypvr")
+texture_pressed = ExtResource("2_4yt4d")
+texture_hover = ExtResource("3_6j4hf")
+texture_disabled = ExtResource("2_4yt4d")
+
+[node name="Label" type="Label" parent="MarginContainer/QuitButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Quit"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SettingsButton" type="TextureButton" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture_normal = ExtResource("1_7ypvr")
+texture_pressed = ExtResource("2_4yt4d")
+texture_hover = ExtResource("3_6j4hf")
+texture_disabled = ExtResource("2_4yt4d")
+
+[node name="Label" type="Label" parent="MarginContainer/SettingsButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Settings"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="MarginContainer/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="MarginContainer/SettingsButton" to="." method="_on_settings_button_pressed"]

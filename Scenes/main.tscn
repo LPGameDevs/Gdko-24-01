@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://eerd6iivlcre"]
+[gd_scene load_steps=7 format=3 uid="uid://eerd6iivlcre"]
 
 [ext_resource type="PackedScene" uid="uid://i5qf35t5xuue" path="res://Scenes/menu.tscn" id="1_cmx5q"]
 [ext_resource type="Script" path="res://Scripts/Scenes/main.gd" id="1_y02bk"]
@@ -6,9 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://d34pkeru2e0h6" path="res://Scenes/settings.tscn" id="2_kanj3"]
 [ext_resource type="Material" uid="uid://bt265aflo0dth" path="res://Shaders/scroll_material.tres" id="2_oyhgu"]
 [ext_resource type="PackedScene" uid="uid://ql7461nfguw8" path="res://Scenes/game.tscn" id="3_be6n8"]
-[ext_resource type="Texture2D" uid="uid://bv81p68fj6r04" path="res://Assets/UI/blue_button04.png" id="5_ssfuo"]
-[ext_resource type="Texture2D" uid="uid://doag8tkhrgyl" path="res://Assets/UI/green_button04.png" id="6_80uae"]
-[ext_resource type="Texture2D" uid="uid://jc3pg4pbikyr" path="res://Assets/UI/grey_button04.png" id="7_cwvwc"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_y02bk")
@@ -32,66 +29,11 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(1, 0.0901961, 0.0588235, 0.611765)
 
-[node name="GUI" type="CanvasLayer" parent="."]
-layer = 0
-
-[node name="MarginContainer" type="MarginContainer" parent="GUI"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 50
-theme_override_constants/margin_top = 25
-theme_override_constants/margin_right = 50
-theme_override_constants/margin_bottom = 25
-
-[node name="SettingsButton" type="TextureButton" parent="GUI/MarginContainer"]
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 0
-texture_normal = ExtResource("5_ssfuo")
-texture_pressed = ExtResource("7_cwvwc")
-texture_hover = ExtResource("6_80uae")
-texture_disabled = ExtResource("7_cwvwc")
-
-[node name="Label" type="Label" parent="GUI/MarginContainer/SettingsButton"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "Settings"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="ExitButton" type="TextureButton" parent="GUI/MarginContainer"]
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 0
-texture_normal = ExtResource("5_ssfuo")
-texture_pressed = ExtResource("7_cwvwc")
-texture_hover = ExtResource("6_80uae")
-texture_disabled = ExtResource("7_cwvwc")
-
-[node name="Label" type="Label" parent="GUI/MarginContainer/ExitButton"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "Exit"
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="Menu" parent="." instance=ExtResource("1_cmx5q")]
 
-[node name="Settings" parent="." instance=ExtResource("2_kanj3")]
+[node name="Game" parent="." instance=ExtResource("3_be6n8")]
 visible = false
 
-[node name="Game" parent="." instance=ExtResource("3_be6n8")]
-
-[connection signal="pressed" from="GUI/MarginContainer/SettingsButton" to="." method="_on_settings_button_pressed"]
-[connection signal="pressed" from="GUI/MarginContainer/ExitButton" to="." method="_on_exit_button_pressed"]
+[node name="Settings" parent="." instance=ExtResource("2_kanj3")]
+layer = 2
+visible = false
