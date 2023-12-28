@@ -37,3 +37,6 @@ visible = false
 [node name="Settings" parent="." instance=ExtResource("2_kanj3")]
 layer = 2
 visible = false
+
+[node name="Background" type="AudioStreamPlayer2D" parent="."]
+bus = &"Music"
