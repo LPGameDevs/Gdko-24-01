@@ -12,7 +12,7 @@ func applyVisibility() -> void :
 func toggleVisibility() -> void :
 	_showingSettings = !_showingSettings;
 	applyVisibility();
-	
+
 
 func _on_toggle_settings() -> void:
 	toggleVisibility();
