@@ -64,6 +64,10 @@ jobs:
     container:
       image: barichello/godot-ci:4.2
     steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          lfs: false
       - run: ./ci-scripts/generate-build-variables.sh
         env:
           ENCRYPTION_PASSWORD: ${{ secrets.ENCRYPTION_PASSWORD }}
@@ -73,10 +77,6 @@ jobs:
           FALLBACK_ICE_SERVERS: ${{ secrets.FALLBACK_ICE_SERVERS }}
           ICE_SERVERS: ${{ secrets.ICE_SERVERS }}
       - run: cat Scripts/Singletons/Build.gd
-      - name: Checkout
-        uses: actions/checkout@v2
-        with:
-          lfs: false
       - name: Setup
         run: |
           mkdir -v -p ~/.local/share/godot/templates
