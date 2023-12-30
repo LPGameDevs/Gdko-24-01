@@ -64,6 +64,15 @@ jobs:
     container:
       image: barichello/godot-ci:4.2
     steps:
+      - run: ./ci-scripts/generate-build-variables.sh
+        env:
+          ENCRYPTION_PASSWORD: ${{ secrets.ENCRYPTION_PASSWORD }}
+          NAKAMA_HOST: ${{ secrets.NAKAMA_HOST }}
+          NAKAMA_PORT: ${{ secrets.NAKAMA_PORT }}
+          NAKAMA_SERVER_KEY: ${{ secrets.NAKAMA_SERVER_KEY }}
+          FALLBACK_ICE_SERVERS: ${{ secrets.FALLBACK_ICE_SERVERS }}
+          ICE_SERVERS: ${{ secrets.ICE_SERVERS }}
+      - run: cat Scripts/Singletons/Build.gd
       - name: Checkout
         uses: actions/checkout@v2
         with:
