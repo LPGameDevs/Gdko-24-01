@@ -19,6 +19,8 @@ config/icon="res://icon.svg"
 
 SignalManager="*res://Scripts/Singletons/SignalManager.gd"
 SoundManager="*res://Scripts/Singletons/SoundManager.gd"
+Nakama="*res://addons/com.heroiclabs.nakama/Nakama.gd"
+Online="*res://Scripts/Singletons/Online.gd"
 
 [display]
 
