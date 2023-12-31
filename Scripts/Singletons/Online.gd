@@ -11,7 +11,8 @@ var nakama_scheme: String = 'http'
 #var state = null : set = _set_state, get = _get_state
 
 # For other scripts to access:
-var nakama_client: NakamaClient : set = _set_readonly_variable, get = get_nakama_client
+#var nakama_client: NakamaClient : set = _set_readonly_variable, get = get_nakama_client
+var nakama_client: NakamaClient : get = get_nakama_client
 var nakama_session: NakamaSession : set = set_nakama_session
 var nakama_socket: NakamaSocket : set = _set_readonly_variable
 

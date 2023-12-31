@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://eerd6iivlcre"]
+[gd_scene load_steps=9 format=3 uid="uid://eerd6iivlcre"]
 
 [ext_resource type="PackedScene" uid="uid://i5qf35t5xuue" path="res://Scenes/menu.tscn" id="1_cmx5q"]
 [ext_resource type="Script" path="res://Scripts/Scenes/main.gd" id="1_y02bk"]
@@ -7,6 +7,7 @@
 [ext_resource type="Material" uid="uid://bt265aflo0dth" path="res://Shaders/scroll_material.tres" id="2_oyhgu"]
 [ext_resource type="PackedScene" uid="uid://ql7461nfguw8" path="res://Scenes/game.tscn" id="3_be6n8"]
 [ext_resource type="Script" path="res://Scripts/HttpRequest.gd" id="7_0j6f5"]
+[ext_resource type="PackedScene" uid="uid://402pie83sm1t" path="res://Scenes/login.tscn" id="8_s1y7y"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_y02bk")
@@ -45,3 +46,6 @@ visible = false
 script = ExtResource("7_0j6f5")
 
 [node name="HTTPRequest" type="HTTPRequest" parent="HttpRequest"]
+
+[node name="Login" parent="." instance=ExtResource("8_s1y7y")]
+layer = 2

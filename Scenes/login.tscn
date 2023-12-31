@@ -1,0 +1,92 @@
+[gd_scene load_steps=4 format=3 uid="uid://402pie83sm1t"]
+
+[ext_resource type="Script" path="res://Scripts/Scenes/UI/ConnectionScreen.gd" id="1_angwr"]
+[ext_resource type="Texture2D" uid="uid://bv81p68fj6r04" path="res://Assets/UI/blue_button04.png" id="1_k212q"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g4r6p"]
+bg_color = Color(0.152941, 0.152941, 0.152941, 1)
+
+[node name="Login" type="CanvasLayer"]
+
+[node name="ConnectionScreen" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("1_angwr")
+
+[node name="TabContainer" type="TabContainer" parent="ConnectionScreen"]
+custom_minimum_size = Vector2(500, 500)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_top = -15.5
+offset_bottom = 15.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_g4r6p")
+
+[node name="Login" type="Control" parent="ConnectionScreen/TabContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="ConnectionScreen/TabContainer/Login"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 25
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ConnectionScreen/TabContainer/Login/MarginContainer"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="ConnectionScreen/TabContainer/Login/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Login with Itch.io"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="ConnectionScreen/TabContainer/Login/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_vertical = 6
+text = "If you login with your itch account I can keep track of any achievements across games."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 1
+
+[node name="Buttons" type="HBoxContainer" parent="ConnectionScreen/TabContainer/Login/MarginContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="LoginButton" type="TextureButton" parent="ConnectionScreen/TabContainer/Login/MarginContainer/VBoxContainer/Buttons"]
+layout_mode = 2
+texture_normal = ExtResource("1_k212q")
+
+[node name="Label" type="Label" parent="ConnectionScreen/TabContainer/Login/MarginContainer/VBoxContainer/Buttons/LoginButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Login"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Anonymous" type="Control" parent="ConnectionScreen/TabContainer"]
+visible = false
+layout_mode = 2
+
+[connection signal="pressed" from="ConnectionScreen/TabContainer/Login/MarginContainer/VBoxContainer/Buttons/LoginButton" to="ConnectionScreen" method="_on_LoginButton_pressed"]

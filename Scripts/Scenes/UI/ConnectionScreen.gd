@@ -1,13 +1,14 @@
 extends "res://Scripts/Extensions/Screen.gd"
 
 @onready var tab_container := $TabContainer
-@onready var login_email_field := $TabContainer/Login/GridContainer/Email
-@onready var login_password_field := $TabContainer/Login/GridContainer/Password
-@onready var login_save_checkbox := $TabContainer/Login/GridContainer/SaveCheckBox
-@onready var create_account_tab := $"TabContainer/Create Account"
-@onready var create_account_username_field = $"TabContainer/Create Account/GridContainer/Username"
-@onready var create_account_save_checkbox := $"TabContainer/Create Account/GridContainer/SaveCheckBox"
-@onready var forgot_password_tab = $"TabContainer/Forgot password?"
+#@onready var login_email_field := $TabContainer/Login/GridContainer/Email
+#@onready var login_password_field := $TabContainer/Login/GridContainer/Password
+#@onready var login_save_checkbox := $TabContainer/Login/GridContainer/SaveCheckBox
+#@onready var create_account_tab := $"TabContainer/Create Account"
+#@onready var create_account_username_field = $"TabContainer/Create Account/GridContainer/Username"
+#@onready var create_account_save_checkbox := $"TabContainer/Create Account/GridContainer/SaveCheckBox"
+#@onready var forgot_password_tab = $"TabContainer/Forgot password?"
+
 
 const CREDENTIALS_FILENAME = 'user://credentials.json.enc'
 const CREDENTIALS_FILENAME_OLD = 'user://credentials.json'
@@ -26,9 +27,9 @@ enum LoginType {
 var _login_type = LoginType.EMAIL
 
 func _ready() -> void:
-	tab_container.set_tab_title(0, "SESSION_SETUP_TAB_LOGIN")
-	tab_container.set_tab_title(1, "SESSION_SETUP_TAB_CREATE_ACCOUNT")
-	tab_container.set_tab_title(2, "SESSION_SETUP_TAB_FORGOT_PASSWORD")
+	#tab_container.set_tab_title(0, "SESSION_SETUP_TAB_LOGIN")
+	#tab_container.set_tab_title(1, "SESSION_SETUP_TAB_CREATE_ACCOUNT")
+	#tab_container.set_tab_title(2, "SESSION_SETUP_TAB_FORGOT_PASSWORD")
 
 	tab_container.current_tab = 0
 
@@ -42,8 +43,8 @@ func _set_credentials(_email: String, _password: String) -> void:
 	email = _email
 	password = _password
 
-	login_email_field.text = email
-	login_password_field.text = password
+	#login_email_field.text = email
+	#login_password_field.text = password
 
 func _load_credentials(file: FileAccess) -> void:
 	var result = JSON.parse_string(file.get_as_text())
@@ -76,17 +77,20 @@ func do_login(save_credentials: bool = false) -> void:
 	visible = false
 
 	if _reconnect:
-		ui_layer.show_message("MESSAGE_SESSION_EXPIRED")
+		#ui_layer.show_message("MESSAGE_SESSION_EXPIRED")
 		_reconnect = false
-	else:
-		ui_layer.show_message("MESSAGE_SESSION_LOGGING_IN")
+	#else:
+		#ui_layer.show_message("MESSAGE_SESSION_LOGGING_IN")
 
-	var nakama_session = await Online.nakama_client.authenticate_email_async(email, password, null, false)
+	#var nakama_session = await Online.nakama_client.authenticate_email_async(email, password, null, false)
+	var deviceid = OS.get_unique_id()
+	var userName = 'yanniboi';
+	var nakama_session = await Online.nakama_client.authenticate_device_async(deviceid, userName)
 
 	if nakama_session.is_exception():
 		visible = true
-		login_email_field.grab_focus()
-		ui_layer.show_message("MESSAGE_LOGIN_FAILED")
+		#login_email_field.grab_focus()
+		#ui_layer.show_message("MESSAGE_LOGIN_FAILED")
 
 		# Clear stored email and password, but leave the fields alone so the
 		# user can attempt to correct them.
@@ -102,42 +106,44 @@ func do_login(save_credentials: bool = false) -> void:
 
 		Online.nakama_session = nakama_session
 
-		ui_layer.hide_message()
+		#ui_layer.hide_message()
 
-		if _next_screen:
-			ui_layer.show_screen(_next_screen)
+		#if _next_screen:
+			#ui_layer.show_screen(_next_screen)
 	visible = false
 
 func _on_LoginButton_pressed() -> void:
-	email = login_email_field.text.strip_edges()
-	password = login_password_field.text.strip_edges()
-	do_login(login_save_checkbox.pressed)
+	#email = login_email_field.text.strip_edges()
+	#password = login_password_field.text.strip_edges()
+	#do_login(login_save_checkbox.pressed)
+	do_login()
 
 func _on_CreateAccountButton_pressed() -> void:
 	email = $"TabContainer/Create Account/GridContainer/Email".text.strip_edges()
 	password = $"TabContainer/Create Account/GridContainer/Password".text.strip_edges()
 
 	var username = $"TabContainer/Create Account/GridContainer/Username".text.strip_edges()
-	var save_credentials = create_account_save_checkbox.pressed
+	#var save_credentials = create_account_save_checkbox.pressed
+	var save_credentials = false
 
 	if email == '':
-		ui_layer.show_message("MESSAGE_EMAIL_REQUIRED")
+		#ui_layer.show_message("MESSAGE_EMAIL_REQUIRED")
 		return
 	if password == '':
-		ui_layer.show_message("MESSAGE_PASSWORD_REQUIRED")
+		#ui_layer.show_message("MESSAGE_PASSWORD_REQUIRED")
 		return
 	if username == '':
-		ui_layer.show_message("MESSAGE_USERNAME_REQUIRED")
+		#ui_layer.show_message("MESSAGE_USERNAME_REQUIRED")
 		return
 
 	visible = false
-	ui_layer.show_message("MESSAGE_CREATING_ACCOUNT")
+	#ui_layer.show_message("MESSAGE_CREATING_ACCOUNT")
 
 	var nakama_session = await Online.nakama_client.authenticate_email_async(email, password, username, true)
 
 	if nakama_session.is_exception():
 		visible = true
-		create_account_username_field.grab_focus()
+		#create_account_username_field.grab_focus()
 
 		var msg = nakama_session.get_exception().message
 		# Nakama treats registration as logging in, so this is what we get if the
@@ -146,7 +152,7 @@ func _on_CreateAccountButton_pressed() -> void:
 			msg = 'MESSAGE_EMAIL_TAKEN'
 		elif msg == '':
 			msg = 'MESSAGE_CREATE_ACCOUNT_FAILED'
-		ui_layer.show_message(msg)
+		#ui_layer.show_message(msg)
 
 		# We always set Online.nakama_session in case something is yielding
 		# on the "session_changed" signal.
@@ -154,21 +160,21 @@ func _on_CreateAccountButton_pressed() -> void:
 	else:
 		if save_credentials:
 			_save_credentials()
-		#Online.nakama_session = nakama_session
-		ui_layer.hide_message()
-		ui_layer.show_screen("MatchScreen")
+		Online.nakama_session = nakama_session
+		#ui_layer.hide_message()
+		#ui_layer.show_screen("MatchScreen")
 
 func _on_ResetPasswordButton_pressed() -> void:
 	var email = $"TabContainer/Forgot password?/GridContainer/Email".text.strip_edges()
 
 	if email == '':
-		ui_layer.show_message("MESSAGE_EMAIL_REQUIRED")
+		#ui_layer.show_message("MESSAGE_EMAIL_REQUIRED")
 		return
 
 	var http_request := HTTPRequest.new()
 	add_child(http_request)
 
-	ui_layer.show_message("MESSAGE_PASSWORD_RESET_SENDING")
+	#ui_layer.show_message("MESSAGE_PASSWORD_RESET_SENDING")
 
 	var data :=  {
 		form_id = "custom_forgot_password_form",
@@ -182,7 +188,7 @@ func _on_ResetPasswordButton_pressed() -> void:
 	var headers := ["Content-Type: application/x-www-form-urlencoded"]
 	if http_request.request(FORGOT_PASSWORD_URL, headers, HTTPClient.METHOD_POST, query_string) != OK:
 		http_request.queue_free()
-		ui_layer.show_message("MESSAGE_PASSWORD_RESET_FAILED")
+		#ui_layer.show_message("MESSAGE_PASSWORD_RESET_FAILED")
 		return
 
 	http_request.request_completed.connect(self._on_ResetPasswordButton_request_completed)
@@ -191,7 +197,7 @@ func _on_ResetPasswordButton_pressed() -> void:
 func _on_ResetPasswordButton_request_completed(result, response_code, headers, body) -> void:
 	if result != HTTPRequest.RESULT_SUCCESS or response_code >= 400:
 		#http_request.queue_free()
-		ui_layer.show_message("MESSAGE_PASSWORD_RESET_FAILED")
+		#ui_layer.show_message("MESSAGE_PASSWORD_RESET_FAILED")
 		return
 
-	ui_layer.show_message("MESSAGE_PASSWORD_RESET_SENT")
+	#ui_layer.show_message("MESSAGE_PASSWORD_RESET_SENT")
