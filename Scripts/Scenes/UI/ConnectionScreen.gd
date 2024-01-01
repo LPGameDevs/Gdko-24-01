@@ -35,7 +35,7 @@ func _ready() -> void:
 
 
 	if FileAccess.file_exists(CREDENTIALS_FILENAME):
-		var file = FileAccess.open_encrypted_with_pass(CREDENTIALS_FILENAME, FileAccess.READ, "Build.encryption_password"); 
+		var file = FileAccess.open_encrypted_with_pass(CREDENTIALS_FILENAME, FileAccess.READ, "Build.encryption_password");
 		if file != null:
 			_load_credentials(file)
 
@@ -110,7 +110,6 @@ func do_login(save_credentials: bool = false) -> void:
 
 		#if _next_screen:
 			#ui_layer.show_screen(_next_screen)
-	visible = false
 
 func _on_LoginButton_pressed() -> void:
 	#email = login_email_field.text.strip_edges()

@@ -1,14 +1,48 @@
-[gd_scene load_steps=5 format=3 uid="uid://ql7461nfguw8"]
+[gd_scene load_steps=10 format=3 uid="uid://ql7461nfguw8"]
 
 [ext_resource type="Script" path="res://Scripts/Scenes/game.gd" id="1_3bnbm"]
 [ext_resource type="Texture2D" uid="uid://bv81p68fj6r04" path="res://Assets/UI/blue_button04.png" id="1_7ypvr"]
 [ext_resource type="Texture2D" uid="uid://jc3pg4pbikyr" path="res://Assets/UI/grey_button04.png" id="2_4yt4d"]
+[ext_resource type="Texture2D" uid="uid://cpmr8fc4yuq1u" path="res://Assets/Game/court_03.png" id="2_io8ky"]
 [ext_resource type="Texture2D" uid="uid://doag8tkhrgyl" path="res://Assets/UI/green_button04.png" id="3_6j4hf"]
+[ext_resource type="Texture2D" uid="uid://c8gms57o6psw6" path="res://Assets/Game/court_center_line.png" id="3_mmbmo"]
+[ext_resource type="Texture2D" uid="uid://cdes3sqgcw2yr" path="res://Assets/Game/goal_posts_left.png" id="4_kqkdi"]
+[ext_resource type="Texture2D" uid="uid://db2a6vj0l6j75" path="res://Assets/Game/goal_posts_right.png" id="5_05dbi"]
+[ext_resource type="PackedScene" uid="uid://57p7kp117isf" path="res://Scripts/Game/player.tscn" id="6_cg3rd"]
 
 [node name="Game" type="CanvasLayer"]
 script = ExtResource("1_3bnbm")
 
+[node name="Field" type="Node" parent="."]
+
+[node name="Arena" type="Node" parent="Field"]
+
+[node name="Floor" type="TextureRect" parent="Field/Arena"]
+offset_right = 1280.0
+offset_bottom = 860.0
+texture = ExtResource("2_io8ky")
+
+[node name="CourtCenterLine" type="Sprite2D" parent="Field/Arena"]
+position = Vector2(640, 427)
+texture = ExtResource("3_mmbmo")
+
+[node name="GoalPostsLeft" type="Sprite2D" parent="Field/Arena"]
+position = Vector2(71, 428)
+texture = ExtResource("4_kqkdi")
+
+[node name="GoalPostsRight" type="Sprite2D" parent="Field/Arena"]
+position = Vector2(1231, 445)
+texture = ExtResource("5_05dbi")
+
+[node name="PlayerLeft" parent="Field" instance=ExtResource("6_cg3rd")]
+position = Vector2(222, 427)
+
+[node name="PlayerRight" parent="Field" instance=ExtResource("6_cg3rd")]
+position = Vector2(1047, 403)
+side = "right"
+
 [node name="MarginContainer" type="MarginContainer" parent="."]
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
