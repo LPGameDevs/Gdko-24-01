@@ -35,6 +35,10 @@ window/handheld/orientation=6
 
 import/blender/enabled=false
 
+[gui]
+
+theme/custom_font="res://Assets/Fonts/JumpandPlay.otf"
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"

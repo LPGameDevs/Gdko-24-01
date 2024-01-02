@@ -45,4 +45,5 @@ func on_collision():
 
 
 func _on_player_area_body_entered(body):
+	on_collision()
 	body.direction.x *= -1;
