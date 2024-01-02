@@ -14,7 +14,7 @@ func _ready():
 #    on_collision();
 	pass;
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	var direction;
 
 	if side == 'left':
@@ -42,3 +42,7 @@ func get_input(up, down):
 
 func on_collision():
 	animation_player.play("hit");
+
+
+func _on_player_area_body_entered(body):
+	body.direction.x *= -1;

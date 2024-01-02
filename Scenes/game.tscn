@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://ql7461nfguw8"]
+[gd_scene load_steps=14 format=3 uid="uid://ql7461nfguw8"]
 
 [ext_resource type="Script" path="res://Scripts/Scenes/game.gd" id="1_3bnbm"]
 [ext_resource type="Texture2D" uid="uid://bv81p68fj6r04" path="res://Assets/UI/blue_button04.png" id="1_7ypvr"]
@@ -9,6 +9,14 @@
 [ext_resource type="Texture2D" uid="uid://cdes3sqgcw2yr" path="res://Assets/Game/goal_posts_left.png" id="4_kqkdi"]
 [ext_resource type="Texture2D" uid="uid://db2a6vj0l6j75" path="res://Assets/Game/goal_posts_right.png" id="5_05dbi"]
 [ext_resource type="PackedScene" uid="uid://57p7kp117isf" path="res://Scripts/Game/player.tscn" id="6_cg3rd"]
+[ext_resource type="Script" path="res://Scripts/Game/Walls.gd" id="6_ivknl"]
+[ext_resource type="PackedScene" uid="uid://3jl2txlagmli" path="res://Scenes/Prefabs/Game/ball.tscn" id="7_uba2x"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_23b10"]
+size = Vector2(324.445, 51)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f3n27"]
+size = Vector2(34.5833, 685)
 
 [node name="Game" type="CanvasLayer"]
 script = ExtResource("1_3bnbm")
@@ -34,12 +42,58 @@ texture = ExtResource("4_kqkdi")
 position = Vector2(1231, 445)
 texture = ExtResource("5_05dbi")
 
+[node name="Walls" type="Node" parent="Field"]
+script = ExtResource("6_ivknl")
+
+[node name="Top" type="Area2D" parent="Field/Walls"]
+position = Vector2(177, 105)
+scale = Vector2(3.6, 1)
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Field/Walls/Top"]
+position = Vector2(120.833, -2.5)
+shape = SubResource("RectangleShape2D_23b10")
+
+[node name="Bottom" type="Area2D" parent="Field/Walls"]
+position = Vector2(177, 105)
+scale = Vector2(3.6, 1)
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Field/Walls/Bottom"]
+position = Vector2(126.667, 635)
+shape = SubResource("RectangleShape2D_23b10")
+
+[node name="Left" type="Area2D" parent="Field/Walls"]
+position = Vector2(177, 105)
+scale = Vector2(3.6, 1)
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Field/Walls/Left"]
+position = Vector2(-27.2917, 322.5)
+shape = SubResource("RectangleShape2D_f3n27")
+
+[node name="Right" type="Area2D" parent="Field/Walls"]
+position = Vector2(177, 105)
+scale = Vector2(3.6, 1)
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Field/Walls/Right"]
+position = Vector2(285.139, 327)
+shape = SubResource("RectangleShape2D_f3n27")
+
 [node name="PlayerLeft" parent="Field" instance=ExtResource("6_cg3rd")]
 position = Vector2(222, 427)
 
 [node name="PlayerRight" parent="Field" instance=ExtResource("6_cg3rd")]
 position = Vector2(1047, 403)
 side = "right"
+
+[node name="Ball" parent="Field" instance=ExtResource("7_uba2x")]
+position = Vector2(645, 424)
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 visible = false
@@ -93,5 +147,9 @@ text = "Settings"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[connection signal="body_entered" from="Field/Walls/Top" to="Field/Walls" method="_on_top_body_entered"]
+[connection signal="body_entered" from="Field/Walls/Bottom" to="Field/Walls" method="_on_bottom_body_entered"]
+[connection signal="body_entered" from="Field/Walls/Left" to="Field/Walls" method="_on_left_body_entered"]
+[connection signal="body_entered" from="Field/Walls/Right" to="Field/Walls" method="_on_right_body_entered"]
 [connection signal="pressed" from="MarginContainer/QuitButton" to="." method="_on_quit_button_pressed"]
 [connection signal="pressed" from="MarginContainer/SettingsButton" to="." method="_on_settings_button_pressed"]
