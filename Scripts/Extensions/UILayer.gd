@@ -47,16 +47,16 @@ func _setup_screen(screen) -> void:
 func get_screens():
 	return screens.get_children()
 
-func get_screen(name: String):
-	return screens.get_node_or_null(name)
+func get_screen(screenName: String):
+	return screens.get_node_or_null(screenName)
 
 func get_current_screen_name() -> String:
 	if current_screen:
 		return current_screen.name
 	return ''
 
-func show_screen(name: String, info: Dictionary = {}) -> void:
-	var screen = screens.get_node(name)
+func show_screen(screenName: String, info: Dictionary = {}) -> void:
+	var screen = screens.get_node(screenName)
 	if not screen:
 		return
 
@@ -67,7 +67,7 @@ func show_screen(name: String, info: Dictionary = {}) -> void:
 	current_screen = screen
 
 	if _is_ready:
-		emit_signal("change_screen", name, screen, info)
+		emit_signal("change_screen", screenName, screen, info)
 
 func hide_screen() -> void:
 	if current_screen and current_screen.has_method('_hide_screen'):

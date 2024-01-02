@@ -1,0 +1,74 @@
+[gd_scene load_steps=3 format=3 uid="uid://dr2y20xylwtks"]
+
+[ext_resource type="Script" path="res://Scripts/Extensions/UILayer.gd" id="1_u2r2w"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_hhxp7"]
+font_size = 45
+
+[node name="UILayer" type="CanvasLayer"]
+script = ExtResource("1_u2r2w")
+
+[node name="Screens" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Overlay" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Cover" type="ColorRect" parent="Overlay"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.184314)
+
+[node name="Message" type="Label" parent="Overlay"]
+visible = false
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 100.0
+offset_bottom = 148.0
+grow_horizontal = 2
+text = "Something useful for players to read..."
+label_settings = SubResource("LabelSettings_hhxp7")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BackButton" type="TextureButton" parent="Overlay"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 40.0
+grow_horizontal = 0
+
+[node name="Alert" type="PanelContainer" parent="Overlay"]
+visible = false
+custom_minimum_size = Vector2(720, 360)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2

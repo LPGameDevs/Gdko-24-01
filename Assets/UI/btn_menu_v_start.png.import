@@ -1,0 +1,26 @@
+[remap]
+
+importer="2d_array_texture"
+type="CompressedTexture2DArray"
+uid="uid://c3xefs8c28f37"
+path="res://.godot/imported/btn_menu_v_start.png-e5729d2113555cc1b0a1b8f0e03bcb77.ctexarray"
+metadata={
+"vram_texture": false
+}
+
+[deps]
+
+source_file="res://Assets/UI/btn_menu_v_start.png"
+dest_files=["res://.godot/imported/btn_menu_v_start.png-e5729d2113555cc1b0a1b8f0e03bcb77.ctexarray"]
+
+[params]
+
+compress/mode=1
+compress/high_quality=false
+compress/lossy_quality=0.7
+compress/hdr_compression=1
+compress/channel_pack=0
+mipmaps/generate=true
+mipmaps/limit=-1
+slices/horizontal=1
+slices/vertical=2

@@ -1,0 +1,55 @@
+[gd_scene load_steps=7 format=3 uid="uid://dqior7ob47nj3"]
+
+[ext_resource type="Script" path="res://Scenes/title.gd" id="1_bccvf"]
+[ext_resource type="Material" uid="uid://bt265aflo0dth" path="res://Shaders/scroll_material.tres" id="2_6ysu5"]
+[ext_resource type="Texture2D" uid="uid://5xrb6hnsfbf3" path="res://Assets/Texture/Gray.png" id="3_hbo4w"]
+[ext_resource type="PackedScene" uid="uid://dr2y20xylwtks" path="res://Scenes/Prefabs/UI/UILayer.tscn" id="4_5kba0"]
+[ext_resource type="PackedScene" uid="uid://gl5nomgeg6j7" path="res://Scenes/Prefabs/UI/StartScreen.tscn" id="5_x0jn3"]
+[ext_resource type="PackedScene" uid="uid://dtb7exeoc2k2f" path="res://Scenes/Prefabs/UI/MenuScreen.tscn" id="6_tyujt"]
+
+[node name="Main" type="Node"]
+script = ExtResource("1_bccvf")
+
+[node name="Background" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Pattern" type="TextureRect" parent="Background"]
+material = ExtResource("2_6ysu5")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_hbo4w")
+stretch_mode = 1
+
+[node name="Colour" type="ColorRect" parent="Background/Pattern"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0.654902, 0.164706, 0.611765)
+
+[node name="UILayer" parent="." instance=ExtResource("4_5kba0")]
+
+[node name="StartScreen" parent="UILayer/Screens" index="0" instance=ExtResource("5_x0jn3")]
+layout_mode = 1
+
+[node name="MenuScreen" parent="UILayer/Screens" index="1" instance=ExtResource("6_tyujt")]
+visible = false
+layout_mode = 1
+
+[node name="BackButton" parent="UILayer/Overlay" index="2"]
+visible = false
+
+[node name="Music" type="AudioStreamPlayer2D" parent="."]
+
+[editable path="UILayer"]

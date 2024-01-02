@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://5xrb6hnsfbf3" path="res://Assets/Texture/Gray.png" id="2_i28w1"]
 [ext_resource type="PackedScene" uid="uid://d34pkeru2e0h6" path="res://Scenes/settings.tscn" id="2_kanj3"]
 [ext_resource type="Material" uid="uid://bt265aflo0dth" path="res://Shaders/scroll_material.tres" id="2_oyhgu"]
-[ext_resource type="PackedScene" uid="uid://ql7461nfguw8" path="res://Scenes/game.tscn" id="3_be6n8"]
+[ext_resource type="PackedScene" uid="uid://ql7461nfguw8" path="res://Scenes/Pong/game.tscn" id="3_be6n8"]
 [ext_resource type="Script" path="res://Scripts/HttpRequest.gd" id="7_0j6f5"]
 [ext_resource type="PackedScene" uid="uid://402pie83sm1t" path="res://Scenes/login.tscn" id="8_s1y7y"]
 

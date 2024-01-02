@@ -1,4 +1,5 @@
 extends Control
+class_name Screen
 
 var ui_layer: UILayer
 

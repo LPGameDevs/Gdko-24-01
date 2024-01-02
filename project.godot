@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Gdko-24-1"
-run/main_scene="res://Scenes/game.tscn"
+run/main_scene="res://Scenes/Pong/game.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
 config/icon="res://icon.svg"
 
@@ -38,6 +38,10 @@ import/blender/enabled=false
 [gui]
 
 theme/custom_font="res://Assets/Fonts/JumpandPlay.otf"
+
+[internationalization]
+
+locale/translations=PackedStringArray("res://Assets/Translation/main.en.translation")
 
 [rendering]
 
