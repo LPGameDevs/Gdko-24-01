@@ -1,0 +1,139 @@
+[gd_scene load_steps=14 format=3 uid="uid://dkmtunn1vdadv"]
+
+[ext_resource type="Script" path="res://Scenes/Prefabs/UI/PauseGameScreen.gd" id="1_n3okv"]
+[ext_resource type="Theme" uid="uid://bpasfuqc5uncj" path="res://Assets/default_theme.tres" id="1_v0np1"]
+[ext_resource type="Texture2D" uid="uid://dsb8raclccs6f" path="res://Assets/UI/board_header.png" id="3_b2oiy"]
+[ext_resource type="LabelSettings" uid="uid://chopkxg5682y7" path="res://Assets/Fonts/screen_header_label.tres" id="4_njmm8"]
+[ext_resource type="Texture2D" uid="uid://l1s60xnn38mg" path="res://Assets/UI/btn_round_home_active.png" id="5_xlfjg"]
+[ext_resource type="Texture2D" uid="uid://dbu1n0d3hgks" path="res://Assets/UI/btn_round_home_pressed.png" id="6_a10eq"]
+[ext_resource type="Texture2D" uid="uid://yci85kj36djs" path="res://Assets/UI/btn_round_home_hover.png" id="7_dcu5u"]
+[ext_resource type="Texture2D" uid="uid://b14le63v0ei2p" path="res://Assets/UI/btn_round_again_active.png" id="7_jnnuq"]
+[ext_resource type="Texture2D" uid="uid://dy163jueue2ds" path="res://Assets/UI/btn_round_again_pressed.png" id="8_wk57i"]
+[ext_resource type="Texture2D" uid="uid://b1x6wjco8pqq6" path="res://Assets/UI/btn_round_options_active.png" id="9_1ypus"]
+[ext_resource type="Texture2D" uid="uid://cehcj652b7stu" path="res://Assets/UI/btn_round_options_pressed.png" id="10_0hlvc"]
+[ext_resource type="Texture2D" uid="uid://cwhprvfdl38rw" path="res://Assets/UI/btn_round_again_hover.png" id="10_65i1s"]
+[ext_resource type="Texture2D" uid="uid://boc06trsdarq" path="res://Assets/UI/btn_round_options_hover.png" id="13_wajw6"]
+
+[node name="PauseGameScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_v0np1")
+script = ExtResource("1_n3okv")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -419.0
+offset_top = -558.0
+offset_right = 420.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 25
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+texture = ExtResource("3_b2oiy")
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/TextureRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "PAUSE"
+label_settings = ExtResource("4_njmm8")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_constants/separation = 50
+alignment = 1
+
+[node name="HomeButton" type="TextureButton" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+texture_normal = ExtResource("5_xlfjg")
+texture_pressed = ExtResource("6_a10eq")
+texture_hover = ExtResource("7_dcu5u")
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/HomeButton"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -15.0
+offset_right = -15.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "TITLE_MENU_SETTINGS"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="RetryButton" type="TextureButton" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+texture_normal = ExtResource("7_jnnuq")
+texture_pressed = ExtResource("8_wk57i")
+texture_hover = ExtResource("10_65i1s")
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/RetryButton"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -15.0
+offset_right = -15.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "TITLE_MENU_CREDITS"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="SettingsButton" type="TextureButton" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+texture_normal = ExtResource("9_1ypus")
+texture_pressed = ExtResource("10_0hlvc")
+texture_hover = ExtResource("13_wajw6")
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/SettingsButton"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -15.0
+offset_right = -15.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "TITLE_MENU_EXIT"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/HomeButton" to="." method="_on_HomeButton_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/RetryButton" to="." method="_on_RetryButton_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/SettingsButton" to="." method="_on_SettingsButton_pressed"]

@@ -9,9 +9,11 @@ class_name Ball
 
 var direction = Vector2.ZERO
 
-var stop_animation: bool = false;
+var paused: bool = false;
 
 func _ready():
+	SignalManager.PauseGame.connect(_on_pause_game)
+	
 	direction.x = [0.5, 1, -0.5, -1].pick_random();
 	direction.y = [0.5, 1, -0.5, -1].pick_random();
 	#direction.x = [1, -1].pick_random();
@@ -19,6 +21,9 @@ func _ready():
 	animation_player.play("ball_rolling");
 
 func _physics_process(delta):
+	if paused:
+		return;
+
 	handle_rotation();
 
 	if direction:
@@ -74,4 +79,10 @@ func hit_goal() -> void:
 	#direction.x *= -1;
 	queue_free()
 
-
+func _on_pause_game(is_paused: bool) -> void:
+	paused = is_paused;
+	
+	if is_paused:
+		animation_player.play("RESET");
+	else:
+		animation_player.play("ball_rolling");

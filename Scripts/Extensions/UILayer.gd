@@ -11,8 +11,12 @@ signal change_screen (name, screen, info)
 signal back_button_pressed
 signal alert_completed (result)
 
-var current_screen: Control = null : set = _set_readonly_variable
-var current_screen_name: String = '' : set = _set_readonly_variable, get = get_current_screen_name
+# todo work out private setters in godot 4.
+#var current_screen: Control = null : set = _set_readonly_variable
+#var current_screen_name: String = '' : set = _set_readonly_variable, get = get_current_screen_name
+var current_screen: Control = null;
+var current_screen_name: String = '' : get = get_current_screen_name
+
 
 var _is_ready := false
 
@@ -128,6 +132,6 @@ func _on_BackButton_pressed() -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action('ui_cancel') and back_button.visible and event.is_pressed():
 		#Sounds.play("Back")
-		get_tree().set_input_as_handled()
+		get_viewport().set_input_as_handled()
 		go_back()
 

@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://gl5nomgeg6j7" path="res://Scenes/Prefabs/UI/StartScreen.tscn" id="5_x0jn3"]
 [ext_resource type="PackedScene" uid="uid://dtb7exeoc2k2f" path="res://Scenes/Prefabs/UI/MenuScreen.tscn" id="6_tyujt"]
 
-[node name="Main" type="Node"]
+[node name="Title" type="Node"]
 script = ExtResource("1_bccvf")
 
 [node name="Background" type="Control" parent="."]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://ql7461nfguw8"]
+[gd_scene load_steps=21 format=3 uid="uid://ql7461nfguw8"]
 
 [ext_resource type="Script" path="res://Scripts/Scenes/game.gd" id="1_3bnbm"]
 [ext_resource type="Texture2D" uid="uid://bv81p68fj6r04" path="res://Assets/UI/blue_button04.png" id="1_7ypvr"]
@@ -13,6 +13,11 @@
 [ext_resource type="Script" path="res://Scripts/Game/Walls.gd" id="6_ivknl"]
 [ext_resource type="Script" path="res://Scripts/Game/Score.gd" id="6_rspwl"]
 [ext_resource type="PackedScene" uid="uid://3jl2txlagmli" path="res://Scenes/Prefabs/Game/ball.tscn" id="7_uba2x"]
+[ext_resource type="PackedScene" uid="uid://dr2y20xylwtks" path="res://Scenes/Prefabs/UI/UILayer.tscn" id="14_78jev"]
+[ext_resource type="PackedScene" uid="uid://bim4dmsjll7cs" path="res://Scenes/Prefabs/UI/SettingsScreen.tscn" id="15_6k5g8"]
+[ext_resource type="PackedScene" uid="uid://dkmtunn1vdadv" path="res://Scenes/Prefabs/UI/PauseGameScreen.tscn" id="15_dbys2"]
+[ext_resource type="PackedScene" uid="uid://kf4b7i210831" path="res://Scenes/Prefabs/UI/WinGameScreen.tscn" id="17_4h8iq"]
+[ext_resource type="PackedScene" uid="uid://l1am1wm7us7k" path="res://Scenes/Prefabs/UI/LoseGameScreen.tscn" id="18_imtuc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_23b10"]
 size = Vector2(324.445, 51)
@@ -21,6 +26,7 @@ size = Vector2(324.445, 51)
 size = Vector2(34.5833, 685)
 
 [node name="Game" type="CanvasLayer"]
+layer = 0
 script = ExtResource("1_3bnbm")
 
 [node name="Field" type="Node" parent="."]
@@ -186,9 +192,31 @@ text = "Settings"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="UILayer" parent="." instance=ExtResource("14_78jev")]
+
+[node name="PauseGameScreen" parent="UILayer/Screens" index="0" instance=ExtResource("15_dbys2")]
+visible = false
+layout_mode = 1
+
+[node name="SettingsScreen" parent="UILayer/Screens" index="1" instance=ExtResource("15_6k5g8")]
+visible = false
+layout_mode = 1
+
+[node name="WinGameScreen" parent="UILayer/Screens" index="2" instance=ExtResource("17_4h8iq")]
+visible = false
+layout_mode = 1
+
+[node name="LoseGameScreen" parent="UILayer/Screens" index="3" instance=ExtResource("18_imtuc")]
+visible = false
+layout_mode = 1
+
 [connection signal="body_entered" from="Field/Walls/Top" to="Field/Walls" method="_on_top_body_entered"]
 [connection signal="body_entered" from="Field/Walls/Bottom" to="Field/Walls" method="_on_bottom_body_entered"]
 [connection signal="body_entered" from="Field/Walls/Left" to="Field/Walls" method="_on_left_body_entered"]
 [connection signal="body_entered" from="Field/Walls/Right" to="Field/Walls" method="_on_right_body_entered"]
 [connection signal="pressed" from="MarginContainer/QuitButton" to="." method="_on_quit_button_pressed"]
 [connection signal="pressed" from="MarginContainer/SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="back_button_pressed" from="UILayer" to="." method="_on_UILayer_back_button_pressed"]
+[connection signal="change_screen" from="UILayer" to="." method="_on_UILayer_change_screen"]
+
+[editable path="UILayer"]
